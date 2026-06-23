@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Something For You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#0b0b14;
+color:white;
+font-family:Poppins;
+}
+
+/* 🌸 background particles */
+.petal, .star{
+position:absolute;
+pointer-events:none;
+}
+
+.container{
+width:90%;
+max-width:750px;
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(15px);
+text-align:center;
+animation:fade 1s ease;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+h1{
+font-family:"Playfair Display";
+font-size:24px;
+margin-bottom:15px;
+}
+
+p{
+font-size:15px;
+line-height:1.8;
+opacity:0.92;
+}
+
+.btn{
+margin-top:18px;
+padding:10px 18px;
+border-radius:25px;
+border:none;
+cursor:pointer;
+background:white;
+color:black;
+transition:0.3s;
+}
+.btn:hover{transform:scale(1.05);}
+
+.choice button{
+margin:6px;
+padding:10px 14px;
+border-radius:12px;
+border:none;
+cursor:pointer;
+font-size:13px;
+}
+
+.heart{background:#ff4d6d;color:white;}
+.maybe{background:#f7b731;}
+.time{background:#74b9ff;}
+.unknown{background:#dfe6e9;}
+
+.fade{animation:fade 0.8s ease;}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="box">
+
+<!-- PAGE 1 -->
+<div class="page">
+<h1>Hey V...</h1>
+<p>
+Main bas ek chhoti si baat kehna chahta tha...<br><br>
+Shayad sab kuch theek ho chuka hai, phir bhi ek baar try karna zaroori laga.
+</p>
+<button class="btn" onclick="next()">Start</button>
+</div>
+
+</div>
+
+<script>
+let pages = [
+`<h1>Hey V...</h1>
+<p>Main bas ek chhoti si baat kehna chahta tha...<br><br>
+Shayad sab kuch theek ho chuka hai, phir bhi ek baar try karna zaroori laga.</p>`,
+
+`<p>
+Tumne apna faisla pehle hi bata diya tha...<br><br>
+Main bas itna sochta hu ki agar situation aur pressure na hote,<br>
+to shayad kuch baatein alag hoti.<br><br>
+Main tumhe kisi bhi confusion me nahi daalna chahta.
+</p>`,
+
+`<p style="font-family:'Playfair Display';font-size:16px;">
+“Tujhe chand 🌙 kahu...<br>
+Ya apna ek khwaab ✨...<br><br>
+Ya phir sab kuch chhod kar,<br>
+tujhe apna pura jahaan keh du...”
+</p>`,
+
+`<p>
+Ye sab bas ek chhoti si koshish hai...<br><br>
+Kya main kabhi tera intezaar quietly kar sakta hu?<br><br>
+Agar nahi bhi, to main samajh lunga — bas ek honest clarity chahiye.
+</p>`,
+
+`<h1>Ek baat bata...</h1>
+<div class="choice">
+<button class="heart" onclick="reply('yes')">❤️ Yes</button>
+<button class="maybe" onclick="reply('maybe')">🌷 Maybe</button>
+<button class="time" onclick="reply('time')">💭 I Need Time</button>
+<button class="unknown" onclick="reply('unknown')">🤍 I Don't Know Yet</button>
+</div>`,
+
+`<h1>Thank You 🌸</h1>
+<p>
+Itna waqt dene ke liye shukriya...<br><br>
+Main hamesha respect ke saath yaad rakhunga.<br><br>
+Take care 🤍
+</p>`
+];
+
+let i = 0;
+
+function next(){
+i++;
+document.getElementById("box").innerHTML = pages[i] || pages[pages.length-1];
+}
+
+function reply(type){
+let msg = "";
+
+if(type==="yes"){
+msg = "💖 Thank you... this means a lot.";
+}
+if(type==="maybe"){
+msg = "🌷 It's okay... I understand.";
+}
+if(type==="time"){
+msg = "💭 Take all the time you need.";
+}
+if(type==="unknown"){
+msg = "🤍 It's okay not to know yet.";
+}
+
+document.getElementById("box").innerHTML =
+`<h1>${msg}</h1><p>Whatever your answer is, I respect it.</p><button class="btn" onclick="location.reload()">Restart</button>`;
+}
+</script>
+
+</body>
+</html>
